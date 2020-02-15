@@ -13,32 +13,32 @@ class TrashHero(object):
     ]
 
     transitions = [
-        {"trigger": "change_to_setup", "source": "initial", "destination": "setup"},
-        {"trigger": "change_to_ready", "source": "setup", "destination": "ready"},
+        {"trigger": "change_to_setup", "source": "initial", "dest": "setup"},
+        {"trigger": "change_to_ready", "source": "setup", "dest": "ready"},
         {
             "trigger": "change_to_detecting_object",
             "source": "ready",
-            "destination": "detecting_object",
+            "dest": "detecting_object",
         },
         {
             "trigger": "change_to_object_detected",
             "source": "detecting_object",
-            "destination": "object_detected",
+            "dest": "object_detected",
         },
         {
             "trigger": "change_to_left_flap_open",
             "source": "object_detected",
-            "destination": "left_flap_open",
+            "dest": "left_flap_open",
         },
         {
             "trigger": "change_to_right_flap_open",
             "source": "object_detected",
-            "destination": "right_flap_open",
+            "dest": "right_flap_open",
         },
         {
             "trigger": "change_to_ready",
             "source": ["left_flap_open", "right_flap_open"]
-            "destination": "ready",
+            "dest": "ready",
         },
     ]
 
