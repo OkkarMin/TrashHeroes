@@ -30,7 +30,7 @@ class User(Resource):
 
 if __name__ == '__main__':
     new_AI = AI()
-    new_AI.loadmodel('./InceptionV3.h5')
+    new_AI.loadmodel('../models/InceptionV3.h5')
     new_AI.loadLabel('./24hackton_label.txt')
     api.add_resource(User, "/")
     app.run(debug=True)
