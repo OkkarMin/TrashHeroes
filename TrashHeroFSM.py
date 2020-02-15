@@ -20,18 +20,13 @@ class TrashHero(object):
             "dest": "detecting_object",
         },
         {
-            "trigger": "change_to_object_detected",
-            "source": "detecting_object",
-            "dest": "object_detected",
-        },
-        {
             "trigger": "change_to_left_flap_open",
-            "source": "object_detected",
+            "source": "detecting_object",
             "dest": "left_flap_open",
         },
         {
             "trigger": "change_to_right_flap_open",
-            "source": "object_detected",
+            "source": "detecting_object",
             "dest": "right_flap_open",
         },
         {
@@ -52,9 +47,6 @@ class TrashHero(object):
 
     def on_enter_detecting_object(self):
         print("detecting_object state entered")
-
-    def on_enter_object_detected(self):
-        print("object_detectecd state entered")
 
     def on_enter_left_flap_open(self):
         print("left_flap_open state entered")
