@@ -6,8 +6,7 @@ class TrashHero(object):
         "initial",
         "setup",
         "ready",  # an object has been thrown, detected by unltrasonic sensor
-        "detecting_object",
-        "object_detected",
+        "detecting_object",  # an object has been identified, open left or right flap
         "left_flap_open",
         "right_flap_open",
     ]
@@ -62,3 +61,12 @@ class TrashHero(object):
 
     def on_enter_right_flap_open(self):
         print("right_flap_open state entered")
+
+    def __init__(self):
+        self.machine = Machine(
+            self,
+            states=TrashHero.states,
+            transitions=TrashHero.transitions,
+            initial="initial",
+        )
+
