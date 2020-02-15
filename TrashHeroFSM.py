@@ -37,28 +37,28 @@ class TrashHero(object):
         },
         {
             "trigger": "change_to_ready",
-            "source": ["left_flap_open", "right_flap_open"]
+            "source": ["left_flap_open", "right_flap_open"],
             "dest": "ready",
         },
     ]
 
     def on_enter_initial(self):
         print("initial state entered")
-    
+
     def on_enter_setup(self):
         print("setup state entered")
-    
+
     def on_enter_ready(self):
         print("ready state entered")
-    
+
     def on_enter_detecting_object(self):
         print("detecting_object state entered")
-    
+
     def on_enter_object_detected(self):
         print("object_detectecd state entered")
-    
+
     def on_enter_left_flap_open(self):
         print("left_flap_open state entered")
-    
+
     def on_enter_right_flap_open(self):
         print("right_flap_open state entered")
