@@ -31,11 +31,12 @@ class ServoMotors(object):
         sleep(1)
 
     def toggleLeftServo(self):
-        self.setDirection(self.left_servo, 40)
+        self.setDirection(self.left_servo, 50)  # flap down
         sleep(1)
-        self.setDirection(self.left_servo, 100)
+        self.setDirection(self.left_servo, 110)  # flap up
 
     def toggleRightServo(self):
-        self.setDirection(self.right_servo, 100)
-        time.sleep(1)
-        self.setDirection(self.right_servo, 35)
+        self.setDirection(self.right_servo, 90)  # flap down
+        sleep(1)
+        self.setDirection(self.right_servo, 30)  # flap up
+
