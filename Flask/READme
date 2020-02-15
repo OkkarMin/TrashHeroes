@@ -1,0 +1,7 @@
+#Create DNS with ngrok for local:5000.
+cd ./ngrok-stable-linux-amd64
+./ngrok http 5000
+
+# Run main.py -> host local:5000.
+python3 main.py
+

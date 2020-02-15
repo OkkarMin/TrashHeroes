@@ -1,0 +1,5 @@
+cardboard
+metal_cans
+plastic_bottle
+plastic_with_foil
+styrofoam
