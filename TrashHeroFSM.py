@@ -1,7 +1,9 @@
+from time import sleep
+
+from Camera import Camera
 from transitions import Machine
 from ServoMotors import ServoMotors
 from UltrasoundSensor import UltrasoundSensor
-from Camera import Camera
 
 
 class TrashHero(object):
@@ -52,6 +54,10 @@ class TrashHero(object):
         self.ultrasound_sensor = UltrasoundSensor()
         self.camera = Camera()
 
+        # Moves the flaps to initial position
+        self.motors.toggleLeftServo()
+        self.motors.toggleRightServo()
+
         # Change to "ready" state
         self.change_to_ready()
 
@@ -61,13 +67,13 @@ class TrashHero(object):
         print("----")
 
         # Take a picture when object is been thrown
-        # while True:
-        #     object_thrown = self.ultrasound_sensor.get_distance() < 22
-        #     if (object_thrown):
-        #         self.camera.take_photo()
-        #         break
-
-        self.camera.take_photo()
+        while True:
+            print("waiting...")
+            sleep(0.5)
+            object_thrown = self.ultrasound_sensor.get_distance() <= 22
+            if object_thrown:
+                self.camera.take_photo()
+                break
 
         # Change to "detecting_object" state
         self.change_to_detecting_object()
@@ -84,9 +90,7 @@ class TrashHero(object):
         #     self.machine.change_to_left_flap_open()
         # elif (AI_Response == Non_Recyclable)
         #     self.machine.change_to_right_flap_open()
-        # self.change_to_left_flap_open()
-
-        self.change_to_right_flap_open()
+        self.change_to_left_flap_open()
 
     def on_enter_left_flap_open(self):
         print("----")
@@ -114,5 +118,6 @@ class TrashHero(object):
             states=TrashHero.states,
             transitions=TrashHero.transitions,
             initial="initial",
+            queued=True,
         )
 
