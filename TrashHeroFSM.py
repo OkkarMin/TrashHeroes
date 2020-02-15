@@ -1,11 +1,14 @@
 from transitions import Machine
+from ServoMotors import ServoMotors
+from UltrasoundSensor import UltrasoundSensor
+from Camera import Camera
 
 
 class TrashHero(object):
     states = [
-        "initial",
-        "setup",
-        "ready",  # an object has been thrown, detected by unltrasonic sensor
+        "initial",  # dummy state
+        "setup",  # setup hardwares and GPIOs
+        "ready",  # an object has been thrown, detected by ultrasonic sensor
         "detecting_object",  # an object has been identified, open left or right flap
         "left_flap_open",
         "right_flap_open",
@@ -37,37 +40,73 @@ class TrashHero(object):
     ]
 
     def on_enter_initial(self):
-        print("initial state entered")
+        pass
 
     def on_enter_setup(self):
-        print("setup state entered")
         print("----")
         print("setting up GPIOs")
         print("----")
 
+        # Init Hardware and GPIOs
+        self.motors = ServoMotors()
+        self.ultrasound_sensor = UltrasoundSensor()
+        self.camera = Camera()
+
+        # Change to "ready" state
+        self.change_to_ready()
+
     def on_enter_ready(self):
-        print("ready state entered")
         print("----")
         print("ultrasonic scanning for object")
         print("----")
 
+        # Take a picture when object is been thrown
+        # while True:
+        #     object_thrown = self.ultrasound_sensor.get_distance() < 22
+        #     if (object_thrown):
+        #         self.camera.take_photo()
+        #         break
+
+        self.camera.take_photo()
+
+        # Change to "detecting_object" state
+        self.change_to_detecting_object()
+
     def on_enter_detecting_object(self):
-        print("detecting_object state entered")
         print("----")
         print("object is being detected by AI")
         print("----")
 
+        # Send picture to REST endpoint to determine the recycability
+
+        # Change to "left_flap_open" or "right_flap_open" state depending on what AI reply
+        # if (AI_Response == Recyclable):
+        #     self.machine.change_to_left_flap_open()
+        # elif (AI_Response == Non_Recyclable)
+        #     self.machine.change_to_right_flap_open()
+        # self.change_to_left_flap_open()
+
+        self.change_to_right_flap_open()
+
     def on_enter_left_flap_open(self):
-        print("left_flap_open state entered")
         print("----")
         print("left flap is opened")
         print("----")
 
+        self.motors.toggleLeftServo()
+
+        # Change to "ready" state
+        self.change_to_ready()
+
     def on_enter_right_flap_open(self):
-        print("right_flap_open state entered")
         print("----")
         print("right flap is opened")
         print("----")
+
+        self.motors.toggleRightServo()
+
+        # Change to "ready" state
+        self.change_to_ready()
 
     def __init__(self):
         self.machine = Machine(
