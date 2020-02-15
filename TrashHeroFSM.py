@@ -41,18 +41,33 @@ class TrashHero(object):
 
     def on_enter_setup(self):
         print("setup state entered")
+        print("----")
+        print("setting up GPIOs")
+        print("----")
 
     def on_enter_ready(self):
         print("ready state entered")
+        print("----")
+        print("ultrasonic scanning for object")
+        print("----")
 
     def on_enter_detecting_object(self):
         print("detecting_object state entered")
+        print("----")
+        print("object is being detected by AI")
+        print("----")
 
     def on_enter_left_flap_open(self):
         print("left_flap_open state entered")
+        print("----")
+        print("left flap is opened")
+        print("----")
 
     def on_enter_right_flap_open(self):
         print("right_flap_open state entered")
+        print("----")
+        print("right flap is opened")
+        print("----")
 
     def __init__(self):
         self.machine = Machine(
