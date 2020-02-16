@@ -24,3 +24,7 @@ Recycling rates in Singapore are low despite various efforts to extract recyclab
 - Incrased knowledge of what items will be recyclables and what will be not be as the user would be able to see AI's result
 - Incentivize effort for recycling correctly
 - and more!
+
+
+## Youtube Video
+[Demo](https://youtu.be/vrjFZZSnsug)
