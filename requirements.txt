@@ -1,0 +1,9 @@
+Keras==2.3.1
+requests==2.18.4
+Flask==1.1.1
+numpy==1.18.0
+tensorflow==1.14.0
+Flask_RESTful==0.3.7
+gpiozero==1.5.1
+picamera==1.13
+transitions==0.7.2
